@@ -1,0 +1,59 @@
+.navBar {
+    height: 10vh;
+    width: 100%;
+}
+
+.navbar-container{
+    height: 10vh;
+    background-color: black;
+    position: fixed;
+}
+
+.navbar-container-row{
+    width: 100vw;
+    height: 100%;
+}
+
+.navbar-container-row-col{
+    height: 100%;
+    color:#FFD700;
+    text-align: center;
+    line-height: 10vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navigate-container {
+    height: 100%;
+}
+
+#col-1 {
+    text-align: end;
+}
+#col-3 {
+    text-align: start;
+}
+
+.searchbar {
+    position: relative;
+    height: 4vh;
+    margin-right: 1vw;
+    border-radius: 30px !important;
+
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    animation-name: FadeIn;
+    animation-duration: 3s;
+    transition-timing-function: ease-in;
+}
+
+@keyframes FadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

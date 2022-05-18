@@ -1,0 +1,75 @@
+.generalContainer {
+    height: 100%;
+    display: grid;
+    font-family: 'Azonix';
+}
+/* 
+.login-form {
+    margin-top: 15%;
+} */
+
+#container-row-col {
+    background-color: black;
+    color: gold;  
+    display: grid;  
+}
+
+#input-text {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+.action-div {
+    position: relative;
+    top: 5%;
+}
+
+#login-register-button {
+    border: 4px solid gold;
+    border-radius: 40px;
+    color: gold;
+    background-color: black;
+    margin: 0;
+    left: 50%;
+
+    -ms-transform:  translateX(-50%);
+    transform: translateX(-50%);
+
+    font-size: 25px;
+    text-align: center;
+    position: relative;
+}
+
+#login-register-button:hover {
+    box-shadow: rgba(202, 182, 2, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+#login-register-button:focus {
+    border-color: black;
+    background-color: gold;
+    color: black;
+    box-shadow: rgba(202, 182, 2, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.action-link {
+    color: gold !important;
+    margin-top: 10%;
+    text-align: center;
+}
+.action-link:hover{
+    color: #0d6efd !important;
+}
+
+#second {
+    margin-top: 2% !important;
+}
+
+.login-register-image {
+    position: relative;
+    width: 50%;
+    left: 50%;
+    top: 50%;
+
+    -ms-transform:  translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}

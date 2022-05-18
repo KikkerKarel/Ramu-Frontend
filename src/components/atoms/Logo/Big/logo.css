@@ -1,0 +1,13 @@
+.logo {
+    background-color: black;
+    border: 4px solid gold;
+    border-radius: 40px;
+    width: 15vw !important;
+    height: 10vh;
+    margin: 10% auto;
+    text-align: center;
+    line-height: 9vh;
+    font-size: 2.3vw;
+    color: gold;
+    font-family: 'Azonix';
+}

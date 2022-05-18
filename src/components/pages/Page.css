@@ -1,0 +1,6 @@
+.all-page-div {
+    overflow: scroll;
+}
+.all-page-div::-webkit-scrollbar{
+    display: none;
+}

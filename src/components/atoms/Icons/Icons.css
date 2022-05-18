@@ -1,0 +1,19 @@
+#icons:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.bi.bi-x-lg {
+    position: relative;
+    right: 1em;
+    animation-name: displaceClose;
+    animation-duration: 2s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes displaceClose {
+    from { transform: translateX(1em);}
+    to { 
+        transform: translateX(0em);
+    }
+}

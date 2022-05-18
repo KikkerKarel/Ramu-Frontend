@@ -1,0 +1,43 @@
+.musiclist-modal-header {
+    background-color: black;
+    color: gold;
+}
+
+.modal-body {
+    height: 75vh;
+    overflow: scroll;
+}
+.modal-body::-webkit-scrollbar{
+    display: none;
+}
+/* 
+.musiclist-table {
+    overflow: hidden;
+} */
+
+#score-select {
+    background-color: transparent;
+    color: black;
+    width: 40%;
+    text-align: center;
+    border: none;
+    appearance: none;
+}
+#score-select:hover {
+    cursor: pointer;
+}
+#score-select:focus {
+    appearance: auto;
+}
+
+
+
+#modal-title {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#centered {
+    text-align: center;
+}

@@ -1,0 +1,13 @@
+.small-logo {
+    background-color: black;
+    border: 4px solid gold;
+    border-radius: 40px;
+    width: 8vw !important;
+    height: 5vh;
+    margin: 10% auto;
+    text-align: center;
+    line-height: 4.5vh;
+    font-size: 1.5vw;
+    color: gold;
+    font-family: 'Azonix';
+}
