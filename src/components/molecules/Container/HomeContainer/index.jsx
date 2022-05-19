@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import React, {Component} from "react";
 import {Container, Row, Col, Button} from 'react-bootstrap';
 import './index.css';
+import jwt from 'jwt-decode';
 
 
 class HomeContainer extends Component {
@@ -10,6 +11,12 @@ class HomeContainer extends Component {
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    async componentDidMount(){
+        const token = Cookies.get("Jwt");
+        const user = jwt(token);
+        console.log(user.UserId);
     }
 
     async handleClick(){

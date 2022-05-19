@@ -61,17 +61,11 @@ class ArtistPageContainer extends Component {
             </Row>
             <Row className='artist-description-row'>
                 <Row className="row-revealUp">
-                    {/* <Col>
-                        <text>Info Column</text>
-                    </Col>
-                    <Col>
-                        <text>Description Column</text>
-                    </Col> */}
                     <Carousel>
-                        <Carousel.Item interval={2000}>
+                        <Carousel.Item interval={5000}>
                             <text>Info column</text>
                         </Carousel.Item>
-                        <Carousel.Item interval={2000}>
+                        <Carousel.Item interval={5000}>
                             <text>Description Column</text>
                         </Carousel.Item>
                     </Carousel>

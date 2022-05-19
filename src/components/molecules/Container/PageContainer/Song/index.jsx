@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Spinner } from 'react-bootstrap';
 import './song.css';
-import chan from "../../../../../images/chan.png";
 import axios from 'axios';
 import queryString from 'query-string';
+import jwtDecode from "jwt-decode";
+import Cookies from 'js-cookie';
+
 
 
 function millisToMinutesAndSeconds(millis) {
@@ -21,7 +23,15 @@ class SongPageContainer extends Component {
         name: '',
         popularity: 0,
         duration: 0,
-        image: ''
+        image: '',
+        artistImage: '',
+        userRating: 0,
+        loading: false
+    }
+
+    constructor(props){
+        super(props);
+        this.handleAddToList = this.handleAddToList.bind(this);
     }
 
     async componentDidMount() {
@@ -41,13 +51,43 @@ class SongPageContainer extends Component {
         
         await axios.get(`/ramu/spotify/db/artist/id/${this.state.artistId}`).then(response => {
             this.setState({
-                artistName: response.data.name
+                artistName: response.data.name,
+                artistImage: response.data.image
             });
+        });
+    }
+
+    async handleAddToList(){
+        this.setState({ loading: true });
+        const token = Cookies.get("Jwt");
+        const user = jwtDecode(token);
+        await axios.post('/ramu/list/add', {
+            userId: user.UserId,
+            songName: this.state.name,
+            songImage: this.state.image,
+            artist: this.state.artistName,
+            artistImage: this.state.artistImage,
+            rating: 8
+        }).then(response => {
+            console.log(response);
+        }).catch((err) => {
+            if(user.UserId === undefined)
+            {
+                console.log("please log in to add music to your list!");
+            }
+        }).finally(() => {
+            this.setState({ loading: false });
         });
     }
 
     render() {
         const durationMin = millisToMinutesAndSeconds(this.state.duration);
+
+        let spinner;
+        if (this.state.loading)
+        {
+            spinner = <Spinner animation="grow" variant="dark" id="loading-spinner" />
+        }
         return <Container className='song-container' fluid>
             <Row className='song-title-row'>
                 <h1 className='song-title'>{this.state.name}</h1>
@@ -102,7 +142,7 @@ class SongPageContainer extends Component {
                         <Col className='col-border-right' id='center'>
                             <Col>
                                 <h3 id='Azonix'>Popularity</h3>
-                                <div className='song-score'>#64</div>
+                                <div className='song-score'>#{this.state.popularity}</div>
                             </Col>
                             <Col id="vl-center" md={1} sm={1} lg={1}>
                                 <div className='vl'></div>
@@ -117,7 +157,7 @@ class SongPageContainer extends Component {
                     </Row>
                     <Row className='song-score-button-row'>
                         <Col className='add-button-col'>
-                            <Button className='add-button'>+ Add</Button>
+                            <Button className='add-button' onClick={this.handleAddToList}>+ Add {spinner}</Button>
                         </Col>
                     </Row>
                     <Row className='song-score-about-row'>

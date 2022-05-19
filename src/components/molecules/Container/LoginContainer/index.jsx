@@ -6,6 +6,7 @@ import Logo from '../../../atoms/Logo/Big/logo';
 import LoginPicture from '../../../../images/Image 2.svg';
 import AuthService from '../../../../service/auth.service';
 import { Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 class LoginContainer extends Component {
 
@@ -25,6 +26,7 @@ class LoginContainer extends Component {
         this.setState({loading:true});
         await AuthService.login(this.state.username, this.state.password).then(data => {
             console.log(data);
+            Cookies.set("Jwt", data.data);
             this.setState({ redirect: true });
         });
     } 
@@ -57,9 +59,6 @@ class LoginContainer extends Component {
                         </Form>
                         <div className="action-div">
                             <Button type="button" id="login-register-button" onClick={this.handleClick}>Login {spinner}</Button>
-                            {/* { this.state.loading === true ? (
-                                 <Spinner animation="grow" variant="warning" />
-                            ):null} */}
                             
                             <NavLink className="action-link">Forgot password?</NavLink>
                             <NavLink href="/register" className="action-link" id="second">Click here to register</NavLink> 

@@ -49,6 +49,11 @@ class NavBarComponent extends Component {
     }
 
     render() {
+        let musiclist;
+        if (this.state.open)
+        {
+            musiclist = <MusicList show={this.state.open} onHide={this.handleOpen} />
+        }
         return <Navbar className="navBar" bg="dark" variant="dark">
             <Container fluid className="navbar-container">
                 <Row className="navbar-container-row">
@@ -73,10 +78,7 @@ class NavBarComponent extends Component {
                 </Row>
             </Container>
 
-            <MusicList 
-                show={this.state.open}
-                onHide={this.handleOpen}
-            />
+            {musiclist}
 
             <SearchOffCanvas 
                 show={this.state.canvas}

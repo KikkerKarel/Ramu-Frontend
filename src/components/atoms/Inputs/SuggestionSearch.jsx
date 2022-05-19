@@ -5,7 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import '../../molecules/Search/OffCanvas/index.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Carousel } from 'react-bootstrap';
+import { borderColor } from '@mui/system';
 
 export function SuggestionSearchArtist(props) {
 
@@ -73,14 +73,24 @@ export function SuggestionSearchSong(props) {
                     },
                 },
             },
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: '30px',
+                    }
+                }
+            },
         },
     });
+
+    const size = 25;
 
     return (
         <ThemeProvider theme={theme}>
             <Stack sx={{ width: '93%' }}>
                 <Autocomplete
-                    freeSolo
+                    // freeSolo
+                    autoHighlight
                     id="canvas-searchbar-control"
                     disableClearable
                     options={newlist}
