@@ -29,6 +29,16 @@ class HomeContainer extends Component {
         });
     };
 
+    async handleWebScrapeCall(){
+        const url = "https://open.spotify.com/artist/5V1qsQHdXNm4ZEZHWvFnqQ";
+        const json = JSON.stringify({ url: url });
+        console.log(json);
+        await axios.post('/ramu/webscraper/scrape/about', json, {headers: { 'Content-Type': 'application/json'}})
+        .then(response => {
+            console.log(response.data.payload);
+        });
+    }
+
     render () {
         return <Container className="home-container" fluid>
             <Row className="home-container-row">
@@ -41,6 +51,7 @@ class HomeContainer extends Component {
                     <div className="numberOne-div">
                         <header>#1</header>
                         <Button onClick={this.handleClick}>Get Artist From Database</Button>
+                        <Button onClick={this.handleWebScrapeCall}>Get About From the Webscraper With The API Gateway</Button>
                     </div>
                 </Col>
             </Row>
