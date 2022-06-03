@@ -15,7 +15,8 @@ class ArtistPageContainer extends Component {
         followers: 0,
         popularity: 0,
         image: "",
-        banner: ""
+        banner: "",
+        about: ""
     }
 
     async componentDidMount() {
@@ -24,20 +25,21 @@ class ArtistPageContainer extends Component {
         const idFromUrl = params.get('/artist/id');
         await axios.get(`/ramu/spotify/db/artist/id/${idFromUrl}`).then(response => {
             console.log(response.data);
-            this.setState({ 
+            this.setState({
                 id: response.data.id,
                 name: response.data.name,
                 followers: response.data.followers,
                 popularity: response.data.popularity,
                 image: response.data.image,
-                banner: response.data.banner
+                banner: response.data.banner,
+                about: response.data.about
             });
         });
     }
 
     render() {
         return <Container className="artist-container" fluid>
-            <Row style={{ backgroundImage: `url(${this.state.banner})`, backgroundRepeat: "no-repeat"}} className="artist-header-row layer parallax">
+            <Row style={{ backgroundImage: `url(${this.state.banner})`, backgroundRepeat: "no-repeat" }} className="artist-header-row layer parallax">
                 {/* <Col className="artist-header-row-col">
                     <Row id="row-1">
                         <Col className="artist-image-background-col" md={4}>
@@ -61,12 +63,12 @@ class ArtistPageContainer extends Component {
             </Row>
             <Row className='artist-description-row'>
                 <Row className="row-revealUp">
-                    <Carousel>
-                        <Carousel.Item interval={5000}>
+                    <Carousel className="carousel">
+                        <Carousel.Item id='carousel-item' interval={1000}>
                             <text>Info column</text>
                         </Carousel.Item>
-                        <Carousel.Item interval={5000}>
-                            <text>Description Column</text>
+                        <Carousel.Item id='carousel-item' interval={5000}>
+                            <text>{this.state.about}</text>
                         </Carousel.Item>
                     </Carousel>
                 </Row>

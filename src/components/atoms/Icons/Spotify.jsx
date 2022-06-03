@@ -26,7 +26,7 @@ const SpotifyIcon = (props) => {
         }
     }
 
-    const handleClick = async (event) => {
+    const handleClick = async () => {
         await axios.post("/ramu/spotify/login").then(response => {
             if (response.data !== "")
             {
@@ -47,3 +47,5 @@ const SpotifyIcon = (props) => {
 }
 
 export default SpotifyIcon;
+
+
