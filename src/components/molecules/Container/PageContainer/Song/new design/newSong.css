@@ -14,7 +14,7 @@
     transition-timing-function: ease-in;
 }
 
-.song-image {
+.header-song-image {
     width: 320px !important;
     height: 320px;
     margin: auto;
@@ -23,6 +23,8 @@
 .addToList-button {
     background-color: black !important;
     border: none !important;
+    display: flex !important;
+    justify-content: center;
     
     animation-name: FadeIn;
     animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);

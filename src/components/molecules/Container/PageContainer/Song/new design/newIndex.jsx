@@ -1,10 +1,11 @@
 import { Component } from 'react';
-import { Container, Image, Row, Table, Button } from 'react-bootstrap';
+import { Container, Image, Row, Table, Button, Spinner } from 'react-bootstrap';
 import './newSong.css';
 import axios from 'axios';
 import queryString from 'query-string';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
+import CheckIcon from '../../../../../atoms/Icons/Check';
 
 class newSongPageContainer extends Component {
 
@@ -18,12 +19,15 @@ class newSongPageContainer extends Component {
         image: '',
         artistImage: '',
         userRating: 0,
-        loading: false
+        loading: false,
+        added: false,
+        inList: false
     }
 
     constructor(props) {
         super(props);
         this.handleAddToList = this.handleAddToList.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     async componentDidMount() {
@@ -47,6 +51,16 @@ class newSongPageContainer extends Component {
                 artistImage: response.data.image
             });
         });
+
+        const token = Cookies.get("Jwt");
+        const user = jwtDecode(token);
+        await axios.get(`/ramu/list/get/${user.UserId}`).then(response => {
+            response.data.forEach((item) => {
+                if (item.artist === this.state.artistName && item.songName === this.state.name) {
+                    this.setState({ inList: true });
+                }
+            });
+        });
     }
 
     async handleAddToList() {
@@ -67,18 +81,31 @@ class newSongPageContainer extends Component {
                 console.log("please log in to add music to your list!");
             }
         }).finally(() => {
+            this.setState({ added: true });
             this.setState({ loading: false });
         });
     }
 
     render() {
+        let added;
+        let check;
+        if (this.state.added || this.state.inList === true){
+            added = "Added to list!";
+            check = <CheckIcon />;
+        } else {
+            added = "Add to List"
+        }
+        let spinner;
+        if (this.state.loading) {
+            spinner = <Spinner animation="grow" variant="light" id="loading-spinner" />
+        }
         return <Container fluid>
             <Row>
                 <header className='header'>
                     <Row>
                         <h1 id="reveal-first" style={{ fontSize: '30px', fontFamily: 'Azonix' }}>{this.state.artistName}</h1>
                         <h1 id="reveal-after" style={{ fontSize: '50px', fontFamily: 'Azonix' }}>{this.state.name}</h1>
-                        <Image id="reveal-after" className='song-image' src={this.state.image} />
+                        <Image id="reveal-after" className='header-song-image' src={this.state.image} />
                     </Row>
                     <Row>
                         <Table className='song-table' borderless responsive>
@@ -118,7 +145,11 @@ class newSongPageContainer extends Component {
                 </div>
             </Row>
             <Row>
-                <Button className='addToList-button' onClick={this.handleAddToList} style={{ margin: '2% auto', width: '75%' }}>Add to List</Button>
+                <Button className='addToList-button' onClick={this.handleAddToList} style={{ margin: '2% auto', width: '75%' }}>
+                    {spinner}
+                    {check}
+                    {added}
+                </Button>
             </Row>
         </Container>
     }

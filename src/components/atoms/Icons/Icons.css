@@ -11,6 +11,10 @@
     animation-fill-mode: backwards;
 }
 
+.bi.bi-check2-circle {
+    color: white;
+}
+
 @keyframes displaceClose {
     from { transform: translateX(1em);}
     to { 
