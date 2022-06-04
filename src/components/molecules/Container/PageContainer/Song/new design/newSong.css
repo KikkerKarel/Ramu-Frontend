@@ -32,6 +32,12 @@
     transition-timing-function: ease-in;
 }
 
+.embedded {
+    margin: 1% auto;
+    height: 100%;
+    width: 50%;
+}
+
 
 #reveal-first {
     animation-name: FadeIn;

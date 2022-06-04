@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Container, Image, Row, Table, Button, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Container, Image, Row, Table, Button, Spinner, OverlayTrigger, Tooltip, Col } from 'react-bootstrap';
 import './newSong.css';
 import axios from 'axios';
 import queryString from 'query-string';
@@ -63,8 +63,6 @@ class newSongPageContainer extends Component {
                 }
             });
         });
-
-        console.log(this.state.score);
     }
 
     async handleAddToList() {
@@ -103,6 +101,7 @@ class newSongPageContainer extends Component {
         if (this.state.loading) {
             spinner = <Spinner animation="grow" variant="light" id="loading-spinner" />
         }
+        let ytVidId = "qw7oS1FBHyI";
         return <Container fluid>
             <Row>
                 <header className='header'>
@@ -126,9 +125,9 @@ class newSongPageContainer extends Component {
                                 <tr style={{ fontSize: '25px', fontWeight: 'bold' }}>
                                     <td>
                                         <OverlayTrigger placement='bottom' overlay={<Tooltip id='button-tooltip-2'>Add or change the score via MyMusicList!</Tooltip>} >
-                                        {this.state.score !== 0 ?
-                                            <div>{this.state.score}</div>
-                                        : <div>-</div>}
+                                            {this.state.score !== 0 ?
+                                                <div>{this.state.score}</div>
+                                                : <div>-</div>}
                                         </OverlayTrigger>
                                     </td>
                                     <td>7.95</td>
@@ -160,6 +159,22 @@ class newSongPageContainer extends Component {
                     {check}
                     {added}
                 </Button>
+            </Row>
+            <Row style={{ borderTop: '1px solid gray', height: '40vh', fontFamily: 'azonix' }}>
+                <Col style={{ textAlign: 'center' }}>
+                    <div className='embedded'>
+                        <h1 style={{ fontSize: '30px'}}>Spotify</h1>
+                        <iframe style={{ borderRadius: '12px' }} src={`https://open.spotify.com/embed/track/${this.state.id}?utm_source=generator`} width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                    </div>
+                </Col>
+                <Col style={{ textAlign: 'center' }}>
+                    <div className='embedded'>
+                        <h1 style={{ fontSize: '30px'}}>Youtube</h1>
+                        <iframe width="100%" height="380" src={`https://www.youtube-nocookie.com/embed/${ytVidId}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        {/* <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/r2bHEcxB5kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+                    </div>
+                </Col>
+
             </Row>
         </Container>
     }
