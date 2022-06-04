@@ -1,0 +1,54 @@
+.header {
+    padding: 25px 16px;
+    text-align: center;
+}
+
+.song-table {
+    width: 50% !important;
+    margin: auto;
+    margin-top: 1%;
+
+    animation-name: FadeIn;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation-duration: 5s;
+    transition-timing-function: ease-in;
+}
+
+.song-image {
+    width: 320px !important;
+    height: 320px;
+    margin: auto;
+}
+
+.addToList-button {
+    background-color: black !important;
+    border: none !important;
+    
+    animation-name: FadeIn;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation-duration: 5s;
+    transition-timing-function: ease-in;
+}
+
+
+#reveal-first {
+    animation-name: FadeIn;
+    animation-duration: 5s;
+    transition-timing-function: ease-in;
+}
+
+#reveal-after {
+    animation-name: FadeIn;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation-duration: 5s;
+    transition-timing-function: ease-in;
+}
+
+@keyframes FadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import { Carousel, Col, Container, Row, } from 'react-bootstrap';
+import { Carousel, Container, Row, Button } from 'react-bootstrap';
 import './artist.css';
-import '../../background.css';
 import axios from 'axios';
-// import chanminaHeader from '../../../../../images/ChanminaHeader.png';
-// import '../../../../atoms/Animations/parallaxHeader';
 import queryString from 'query-string';
+import SongsList from '../../../SongsList';
+
+function commafy( num ) {
+    var str = num.toString().split(',');
+    if (str[0].length >= 5){
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    if (str[1] && str[1].length >= 5) {
+        str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+    }
+    return str.join('.');
+}
 
 class ArtistPageContainer extends Component {
 
@@ -16,7 +25,13 @@ class ArtistPageContainer extends Component {
         popularity: 0,
         image: "",
         banner: "",
-        about: ""
+        about: "",
+        popUp: false
+    }
+
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async componentDidMount() {
@@ -37,9 +52,21 @@ class ArtistPageContainer extends Component {
         });
     }
 
+    handleClick(event) {
+        if (event) {
+            this.setState({ popUp: true });
+        } else {
+            this.setState({ popUp: false });
+        }
+    }
+
     render() {
+        let songsList;
+        if (this.state.popUp) {
+            songsList = <SongsList show={this.state.popUp} onHide={this.handleClick} artistname={this.state.name} artistid={this.state.id} />
+        }
         return <Container className="artist-container" fluid>
-            <Row style={{ backgroundImage: `url(${this.state.banner})`, backgroundRepeat: "no-repeat" }} className="artist-header-row layer parallax">
+            <Row style={{ backgroundImage: `url(${this.state.banner})`, backgroundRepeat: "no-repeat" }} className="artist-header-row parallax">
                 {/* <Col className="artist-header-row-col">
                     <Row id="row-1">
                         <Col className="artist-image-background-col" md={4}>
@@ -62,17 +89,24 @@ class ArtistPageContainer extends Component {
                 <h1 className="revealUp">{this.state.name}</h1>
             </Row>
             <Row className='artist-description-row'>
-                <Row className="row-revealUp">
-                    <Carousel className="carousel">
-                        <Carousel.Item id='carousel-item' interval={1000}>
-                            <text>Info column</text>
-                        </Carousel.Item>
-                        <Carousel.Item id='carousel-item' interval={5000}>
-                            <text>{this.state.about}</text>
-                        </Carousel.Item>
-                    </Carousel>
+                <Row>
+                <Carousel className="carousel">
+                    <Carousel.Item id='carousel-item' interval={5000}>
+                        <div className='flex'>
+                            <h1 id='azonix'>Followers: {commafy(this.state.followers)}</h1>
+                            <h1 id='azonix'>Popularity: {this.state.popularity}</h1>
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item id='carousel-item' interval={5000}>
+                        <text>{this.state.about}</text>
+                    </Carousel.Item>
+                </Carousel>
+                </Row>
+                <Row>
+                    <Button className="songsList-btn" onClick={this.handleClick}>Check out {this.state.name}'s songs</Button>
                 </Row>
             </Row>
+            {songsList}
         </Container>
     }
 }

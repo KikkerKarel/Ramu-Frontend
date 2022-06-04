@@ -6,7 +6,7 @@
 .navbar-container{
     height: 10vh;
     background-color: black;
-    position: fixed;
+    /* position: fixed; */
 }
 
 .navbar-container-row{

@@ -1,3 +1,7 @@
+html::-webkit-scrollbar{
+    display: none;
+}
+
 .artist-container {
     display: block;
     /* position: fixed; */
@@ -34,10 +38,7 @@
     /* background-color: black; */
 }
 
-#row-1 {
-    display: flex;
-    height: 40%;
-}
+
 .artist-image-background-col {
     /* background-color: white; */
     display: block;
@@ -83,21 +84,26 @@
 }
 
 .artist-description-row {
-    padding: 656px 0 20px 0;
+    /* padding: 670px 0 20px 0; */
+    padding: 20px 0 20px 0;
 }
 
 .carousel {
     /* background-color: black; */
     width: 100%;
 }
-#carousel-item {
-    width: 80%;
-    margin-left: 10%;
+
+.flex {
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.row-revealUp {
-   /* background-color: blue; */
-   margin: 0 auto;
+.songsList-btn {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 20%;
+    margin-right: 0px;
 }
 /* .artist-header-row-col {
     background-color: gold;
@@ -113,3 +119,17 @@
 /* .image {
     background-color: black;
 } */
+
+#row-1 {
+    display: flex;
+    height: 40%;
+}
+
+#carousel-item {
+    width: 80%;
+    margin-left: 10%;
+}
+
+#azonix {
+    font-family: 'Azonix';
+}
