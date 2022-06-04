@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Container, Image, Row, Table, Button, Spinner } from 'react-bootstrap';
+import { Container, Image, Row, Table, Button, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import './newSong.css';
 import axios from 'axios';
 import queryString from 'query-string';
@@ -21,7 +21,8 @@ class newSongPageContainer extends Component {
         userRating: 0,
         loading: false,
         added: false,
-        inList: false
+        inList: false,
+        score: 0
     }
 
     constructor(props) {
@@ -58,9 +59,12 @@ class newSongPageContainer extends Component {
             response.data.forEach((item) => {
                 if (item.artist === this.state.artistName && item.songName === this.state.name) {
                     this.setState({ inList: true });
+                    this.setState({ score: item.rating })
                 }
             });
         });
+
+        console.log(this.state.score);
     }
 
     async handleAddToList() {
@@ -89,7 +93,7 @@ class newSongPageContainer extends Component {
     render() {
         let added;
         let check;
-        if (this.state.added || this.state.inList === true){
+        if (this.state.added || this.state.inList === true) {
             added = "Added to list!";
             check = <CheckIcon />;
         } else {
@@ -120,7 +124,13 @@ class newSongPageContainer extends Component {
                             </thead>
                             <tbody>
                                 <tr style={{ fontSize: '25px', fontWeight: 'bold' }}>
-                                    <td>8</td>
+                                    <td>
+                                        <OverlayTrigger placement='bottom' overlay={<Tooltip id='button-tooltip-2'>Add or change the score via MyMusicList!</Tooltip>} >
+                                        {this.state.score !== 0 ?
+                                            <div>{this.state.score}</div>
+                                        : <div>-</div>}
+                                        </OverlayTrigger>
+                                    </td>
                                     <td>7.95</td>
                                     <td># 35</td>
                                     <td># {this.state.popularity}</td>
