@@ -60,7 +60,6 @@ class MusicListComponent extends Component {
     }
 
     async handleRemove(event) {
-        // console.log(event.target.attributes[1].value);
         const id = event.target.attributes[1].value;
         console.log(id);
         await axios.delete(`/ramu/list/delete/${id}`).then(response => {

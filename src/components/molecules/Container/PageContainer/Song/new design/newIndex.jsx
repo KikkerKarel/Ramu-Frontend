@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import CheckIcon from '../../../../../atoms/Icons/Check';
+import ArrowRight from '../../../../../atoms/Icons/ArrowRight';
 
 class newSongPageContainer extends Component {
 
@@ -29,6 +30,7 @@ class newSongPageContainer extends Component {
         super(props);
         this.handleAddToList = this.handleAddToList.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.handleToArtist = this.handleToArtist.bind(this);
     }
 
     async componentDidMount() {
@@ -86,6 +88,10 @@ class newSongPageContainer extends Component {
             this.setState({ added: true });
             this.setState({ loading: false });
         });
+    }
+
+    handleToArtist() {
+        window.location.href = `/artist/id=${this.state.artistId}`;
     }
 
     render() {
@@ -160,21 +166,27 @@ class newSongPageContainer extends Component {
                     {added}
                 </Button>
             </Row>
-            <Row style={{ borderTop: '1px solid gray', height: '40vh', fontFamily: 'azonix' }}>
+            <Row style={{ borderTop: '1px solid gray', fontFamily: 'azonix' }}>
                 <Col style={{ textAlign: 'center' }}>
                     <div className='embedded'>
-                        <h1 style={{ fontSize: '30px'}}>Spotify</h1>
+                        <h1 style={{ fontSize: '30px' }}>Spotify</h1>
                         <iframe style={{ borderRadius: '12px' }} src={`https://open.spotify.com/embed/track/${this.state.id}?utm_source=generator`} width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                     </div>
                 </Col>
                 <Col style={{ textAlign: 'center' }}>
                     <div className='embedded'>
-                        <h1 style={{ fontSize: '30px'}}>Youtube</h1>
+                        <h1 style={{ fontSize: '30px' }}>Youtube</h1>
                         <iframe width="100%" height="380" src={`https://www.youtube-nocookie.com/embed/${ytVidId}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        {/* <iframe width="100%" height="315" src="https://www.youtube-nocookie.com/embed/r2bHEcxB5kY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
                     </div>
                 </Col>
-
+            </Row>
+            <Row style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button className="toArtist-btn" onClick={this.handleToArtist}>
+                    Check out the artist!
+                    <div className='toArtistArrow-div'>
+                        <ArrowRight />
+                    </div>
+                </Button>
             </Row>
         </Container>
     }

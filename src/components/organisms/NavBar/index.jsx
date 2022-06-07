@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import "./index.css";
 import { Navbar } from "react-bootstrap";
@@ -13,7 +13,7 @@ import SpotifyIcon from '../../atoms/Icons/Spotify';
 
 class NavBarComponent extends Component {
 
-    state ={
+    state = {
         open: false,
         canvas: false,
         redirect: false,
@@ -26,7 +26,7 @@ class NavBarComponent extends Component {
         this.handleShowCanvas = this.handleShowCanvas.bind(this);
     }
 
-    handleOpen (event) {
+    handleOpen(event) {
         if (event) {
             this.setState({ open: true });
         } else {
@@ -34,15 +34,15 @@ class NavBarComponent extends Component {
         }
     }
 
-    handleShowCanvas (event) {
+    handleShowCanvas(event) {
         if (event) {
             this.setState({ canvas: true });
         } else {
-            this.setState( {canvas: false });
+            this.setState({ canvas: false });
         }
     }
 
-    handleClose (event) {
+    handleClose(event) {
         if (event) {
             this.setState({ show: false });
         }
@@ -50,11 +50,10 @@ class NavBarComponent extends Component {
 
     render() {
         let musiclist;
-        if (this.state.open)
-        {
+        if (this.state.open) {
             musiclist = <MusicList show={this.state.open} onHide={this.handleOpen} />
         }
-        return <Navbar className="navBar" bg="dark" variant="dark">
+        return <Navbar className="navBar" variant="dark">
             <Container fluid className="navbar-container">
                 <Row className="navbar-container-row">
                     <Col className="navbar-container-row-col" sm={2}>
@@ -63,13 +62,11 @@ class NavBarComponent extends Component {
                         </Navbar.Brand>
                     </Col>
                     <Col className="navbar-container-row-col">
-                        <Container className="navigate-container" fluid>
-                            <Row>
-                                <Col id="col-1"><HomeIcon /></Col>
-                                <Col><NoteList open={this.handleOpen} /></Col>
-                                <Col id="col-3"><PersonalPage /></Col>
-                            </Row>
-                        </Container>
+                        <Row id='menu-items-row'>
+                            <Col id='end'><HomeIcon /></Col>
+                            <Col id='menu-items-col'><NoteList open={this.handleOpen} /></Col>
+                            <Col id='start'><PersonalPage /></Col>
+                        </Row>
                     </Col>
                     <Col className="navbar-container-row-col" sm={2}>
                         <SpotifyIcon />
@@ -80,13 +77,13 @@ class NavBarComponent extends Component {
 
             {musiclist}
 
-            <SearchOffCanvas 
+            <SearchOffCanvas
                 show={this.state.canvas}
                 onHide={this.handleShowCanvas}
                 placement="top"
                 name="top"
             />
-            
+
         </Navbar>
     }
 }

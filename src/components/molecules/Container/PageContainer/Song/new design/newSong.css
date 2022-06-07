@@ -38,6 +38,28 @@
     width: 50%;
 }
 
+.toArtist-btn {
+    width: 25% !important;
+    display: flex !important;
+    justify-content: center;
+    margin: 1% auto !important;
+    background-color: black !important;
+    border: none !important;
+}
+
+.toArtist-btn:hover .toArtistArrow-div {
+    animation-name: FadeIn;
+    animation-duration: 1s;
+    transition-timing-function: ease-in;
+    opacity: 1;
+}
+
+.toArtistArrow-div {
+    position: relative;
+    left: 5px;
+    opacity: 0;
+}
+
 
 #reveal-first {
     animation-name: FadeIn;
