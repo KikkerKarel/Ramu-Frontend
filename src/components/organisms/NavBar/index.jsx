@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import "./index.css";
 import { Navbar } from "react-bootstrap";
 import Logo from "../../atoms/Logo/Small/logo";
@@ -10,6 +10,7 @@ import SearchIcon from '../../atoms/Icons/Search';
 import MusicList from "../../molecules/MusicList";
 import SearchOffCanvas from "../../molecules/Search/OffCanvas";
 import SpotifyIcon from '../../atoms/Icons/Spotify';
+import YouTubeIcon from "../../atoms/Icons/YouTube";
 
 class NavBarComponent extends Component {
 
@@ -69,7 +70,8 @@ class NavBarComponent extends Component {
                         </Row>
                     </Col>
                     <Col className="navbar-container-row-col" sm={2}>
-                        <SpotifyIcon />
+                            <SpotifyIcon />
+                            <YouTubeIcon />
                         <SearchIcon show={this.handleShowCanvas} />
                     </Col>
                 </Row>

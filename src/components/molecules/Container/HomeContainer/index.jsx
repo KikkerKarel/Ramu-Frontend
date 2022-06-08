@@ -47,7 +47,7 @@ class HomeContainer extends Component {
             });
         });
 
-        this.setState({ songId: '7uvW1F97LfVbOF6bzHs3nO'});
+        this.setState({ songId: '7uvW1F97LfVbOF6bzHs3nO' });
 
         await axios.get(`/ramu/api/db/song/get/id/${this.state.songId}`).then(response => {
             this.setState({
@@ -89,11 +89,6 @@ class HomeContainer extends Component {
         window.location.href = `/artist/id=${this.state.artistId}`;
     }
 
-    async handleYTLogin(event) {
-        // GoogleAuth.trySampleRequest();
-        trySampleRequest();
-    }
-
     render() {
         return <Container className="home-container" fluid>
             <Row>
@@ -124,14 +119,14 @@ class HomeContainer extends Component {
                         </Button>
                     </Row>
                 </Col>
-                <Col id='card-col' md={2} style={{ marginLeft: '30px', marginRight: '30px'}}>
-                <Row><h4 id="azonix">Artist</h4></Row>
+                <Col id='card-col' md={2} style={{ marginLeft: '30px', marginRight: '30px' }}>
+                    <Row><h4 id="azonix">Artist</h4></Row>
                     <Row className="home-image-row" style={{ backgroundImage: `url(${this.state.artistImage})`, backgroundRepeat: "no-repeat" }}></Row>
                     <Row className="about-p">
                         <header className="card-header">
                             <h1 style={{ fontSize: '20px' }}>{this.state.artistName}</h1>
                         </header>
-                        <p  style={{ textAlign: 'start', marginTop: '5%' }}>
+                        <p style={{ textAlign: 'start', marginTop: '5%' }}>
                             {this.state.about}
                         </p>
                     </Row>
@@ -145,7 +140,7 @@ class HomeContainer extends Component {
                     </Row>
                 </Col>
                 <Col id='card-col' md={2}>
-                <Row><h4 id="azonix">Album</h4></Row>
+                    <Row><h4 id="azonix">Album</h4></Row>
                     <Row className="home-image-row" style={{ backgroundImage: `url(${this.state.songImage})`, backgroundRepeat: "no-repeat" }}></Row>
                     <Row>
                         <header className="card-header">
@@ -170,7 +165,6 @@ class HomeContainer extends Component {
 
             {/* <Button onClick={this.handleClick}>Get Artist From Database</Button> */}
             {/* <Button onClick={this.handleWebScrapeCall}>Get About From the Webscraper With The API Gateway</Button> */}
-            <Button onClick={this.handleYTLogin}>Login to YouTube</Button>
         </Container>
     }
 }
