@@ -7,9 +7,9 @@ WORKDIR /app
 # add `app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY muziek2r/package.json ./
+COPY package.json ./
 
-COPY muziek2r/package-lock.json ./
+COPY package-lock.json ./
 
 RUN npm install
 

@@ -6,6 +6,8 @@ import './index.css';
 import jwt from 'jwt-decode';
 import { Buffer } from 'buffer';
 import ArrowRight from "../../../atoms/Icons/ArrowRight";
+import trySampleRequest from "../../../../service/googleAuth";
+import queryString from 'query-string';
 
 class HomeContainer extends Component {
 
@@ -87,6 +89,11 @@ class HomeContainer extends Component {
         window.location.href = `/artist/id=${this.state.artistId}`;
     }
 
+    async handleYTLogin(event) {
+        // GoogleAuth.trySampleRequest();
+        trySampleRequest();
+    }
+
     render() {
         return <Container className="home-container" fluid>
             <Row>
@@ -163,6 +170,7 @@ class HomeContainer extends Component {
 
             {/* <Button onClick={this.handleClick}>Get Artist From Database</Button> */}
             {/* <Button onClick={this.handleWebScrapeCall}>Get About From the Webscraper With The API Gateway</Button> */}
+            <Button onClick={this.handleYTLogin}>Login to YouTube</Button>
         </Container>
     }
 }
