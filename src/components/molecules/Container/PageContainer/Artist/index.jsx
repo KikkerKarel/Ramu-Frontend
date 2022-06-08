@@ -5,9 +5,9 @@ import axios from 'axios';
 import queryString from 'query-string';
 import SongsList from '../../../SongsList';
 
-function commafy( num ) {
+function commafy(num) {
     var str = num.toString().split(',');
-    if (str[0].length >= 5){
+    if (str[0].length >= 5) {
         str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
     }
     if (str[1] && str[1].length >= 5) {
@@ -89,20 +89,20 @@ class ArtistPageContainer extends Component {
                 <h1 className="revealUp">{this.state.name}</h1>
             </Row>
             <Row className='artist-description-row'>
-                <Row>
-                <Carousel className="carousel">
-                    <Carousel.Item id='carousel-item' interval={5000}>
-                        <div className='flex'>
-                            <h1 id='azonix'>Followers: {commafy(this.state.followers)}</h1>
-                            <h1 id='azonix'>Popularity: {this.state.popularity}</h1>
-                        </div>
-                    </Carousel.Item>
-                    <Carousel.Item id='carousel-item' interval={5000}>
-                        <text>{this.state.about}</text>
-                    </Carousel.Item>
-                </Carousel>
+                <Row id="flex" style={{ height: '50vh' }}>
+                    <Carousel className="carousel">
+                        <Carousel.Item id='carousel-item' interval={5000}>
+                            <div className='space-evenly'>
+                                <h1 id='azonix'>Followers: {commafy(this.state.followers)}</h1>
+                                <h1 id='azonix'>Popularity: {this.state.popularity}</h1>
+                            </div>
+                        </Carousel.Item>
+                        <Carousel.Item id='carousel-item' interval={5000}>
+                            <text>{this.state.about}</text>
+                        </Carousel.Item>
+                    </Carousel>
                 </Row>
-                <Row>
+                <Row id="flex">
                     <Button className="songsList-btn" onClick={this.handleClick}>Check out {this.state.name}'s songs</Button>
                 </Row>
             </Row>

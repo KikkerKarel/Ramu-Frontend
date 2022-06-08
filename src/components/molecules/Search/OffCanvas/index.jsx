@@ -77,9 +77,9 @@ class SearchOffCanvas extends Component {
         }
 
         return <Offcanvas id='offcanvas' {...this.props}>
-            <Offcanvas.Header className='offcanvas-header' closeButton>
+            {/* <Offcanvas.Header className='offcanvas-header' closeButton>
                 <Offcanvas.Title>Search</Offcanvas.Title>
-            </Offcanvas.Header>
+            </Offcanvas.Header> */}
             <Offcanvas.Body className="search-canvas-body">
                 <Dropdown className='search-dropdown' align='end'>
                     <Dropdown.Toggle id="dropdown-basic">
