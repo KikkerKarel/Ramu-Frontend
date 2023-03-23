@@ -51,9 +51,15 @@ class HomeContainer extends Component {
                 
             </Row> */}
             <Row>
-                <div className="image-div-container" style={{ backgroundImage: `url(${chanmina2})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
+                <div style={{ position: 'absolute', height: '60%', overflow: 'hidden'}}>
+                    <div className="image-div-container" style={{ backgroundImage: `url(${chanmina})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}></div>
+                </div>
+                
                 <div className="image-div">
-                    <Image src={chanmina} style={{ height: '50%', marginTop: '5%' }} />
+                    <Image src={chanmina} style={{ height: '100%' }} />
+                </div>
+
+                <div id="test">
                     <text>test</text>
                 </div>
             </Row>
