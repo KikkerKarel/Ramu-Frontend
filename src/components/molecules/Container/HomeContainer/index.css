@@ -1,19 +1,14 @@
-.home-container{
-    height: 100%;
-    position: fixed;
-}
 
 .home-container-row {
     height: 10%;
-    position: relative;
+    /* position: relative; */
 } 
 
-.home-container-row-col {
+.home-row-col {
     /* background-color: red; */
     color: black;
     font-size: 40px;
-    text-align: center;
-    line-height: 10vh;
+    overflow-y: auto;     
 }
 
 .home-container-row-2 {
@@ -34,4 +29,19 @@
 
 #test{
     background-color: red;
+}
+
+.image-div-container {
+    position: absolute;
+    height: 60%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    filter: blur(8px);
+}
+.image-div {
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }

@@ -1,26 +1,19 @@
 .navBar {
+    background-color: #121212;
     height: 10vh;
+}
+
+.navbar-row{
     width: 100%;
 }
 
-.navbar-container{
-    height: 10vh;
-    background-color: black;
-    position: fixed;
-}
-
-.navbar-container-row{
-    width: 100vw;
-    height: 100%;
-}
-
 .navbar-container-row-col{
-    height: 100%;
     color:#FFD700;
     text-align: center;
     line-height: 10vh;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .navigate-container {
