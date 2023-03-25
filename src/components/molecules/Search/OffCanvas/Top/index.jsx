@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Offcanvas, Form, Dropdown } from 'react-bootstrap';
 import './index.css';
-import SearchIcon from '../../../atoms/Icons/Search';
+import SearchIcon from '../../../../atoms/Icons/Search';
 import axios from 'axios';
-import { SuggestionSearchArtist, SuggestionSearchSong } from '../../../atoms/Inputs/SuggestionSearch';
+import { SuggestionSearchArtist, SuggestionSearchSong } from '../../../../atoms/Inputs/SuggestionSearch';
 
 class SearchOffCanvas extends Component {
 
@@ -77,9 +77,6 @@ class SearchOffCanvas extends Component {
         }
 
         return <Offcanvas id='offcanvas' {...this.props}>
-            <Offcanvas.Header className='offcanvas-header' closeButton>
-                <Offcanvas.Title>Search</Offcanvas.Title>
-            </Offcanvas.Header>
             <Offcanvas.Body className="search-canvas-body">
                 <Dropdown className='search-dropdown' align='end'>
                     <Dropdown.Toggle id="dropdown-basic">

@@ -1,5 +1,5 @@
 #offcanvas {
-    height: 30%;
+    height: 10%;
 }
 
 /* .search-canvas-body {
@@ -17,6 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
 }
 .search-dropdown {
     position: relative;

@@ -8,7 +8,8 @@ import PersonalPage from '../../atoms/Icons/Personal';
 import HomeIcon from '../../atoms/Icons/Home';
 import SearchIcon from '../../atoms/Icons/Search';
 import MusicList from "../../molecules/MusicList";
-import SearchOffCanvas from "../../molecules/Search/OffCanvas";
+import SearchOffCanvas from "../../molecules/Search/OffCanvas/Top";
+import SearchOffCanvasEnd from "../../molecules/Search/OffCanvas/End";
 import SpotifyIcon from '../../atoms/Icons/Spotify';
 
 class NavBarComponent extends Component {
@@ -75,12 +76,18 @@ class NavBarComponent extends Component {
                 show={this.state.open}
                 onHide={this.handleOpen}
             />
-
+{/* 
             <SearchOffCanvas
                 show={this.state.canvas}
                 onHide={this.handleShowCanvas}
                 placement="top"
                 name="top"
+            /> */}
+            <SearchOffCanvasEnd
+                show={this.state.canvas}
+                onHide={this.handleShowCanvas}
+                placement="end"
+                name="end"
             />
 
         </Navbar>
