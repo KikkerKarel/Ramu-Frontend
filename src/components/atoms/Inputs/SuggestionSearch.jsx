@@ -5,7 +5,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 import '../../molecules/Search/OffCanvas/Top/index.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import Box from '@mui/material/Box';
-import { Carousel } from 'react-bootstrap';
 
 export function SuggestionSearchArtist(props) {
 

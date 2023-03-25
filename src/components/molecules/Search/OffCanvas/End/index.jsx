@@ -115,7 +115,7 @@ class SearchOffCanvasEnd extends Component {
         let searchCondition;
         if (this.state.value == 0)
         {
-            searchCondition = <SuggestionSearchArtist list={this.state.artists} search={this.handleSearch} />;
+            searchCondition = <SuggestionSearchArtist list={list} search={this.handleSearch} />;
         } else if (this.state.value === 1)
         {
             searchCondition = <SuggestionSearchSong list={this.state.songs} search={this.handleSearch} />;
@@ -141,7 +141,6 @@ class SearchOffCanvasEnd extends Component {
                 <TabPanel value={this.state.value} index={0}>
                     <Form className="canvas-end-searchbar">
                         {searchCondition}
-                        <SearchIcon />
                     </Form>
                     <div className="search-result-container">
                         <Table responsive hover>
