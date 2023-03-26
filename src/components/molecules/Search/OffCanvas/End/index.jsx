@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Offcanvas, Form, Table } from "react-bootstrap";
-import { SuggestionSearchArtist, SuggestionSearchSong } from '../../../../atoms/Inputs/SuggestionSearch';
-import SearchIcon from '../../../../atoms/Icons/Search';
+import { Offcanvas, Table } from "react-bootstrap";
 import './index.css';
 import chan from '../../../../../images/chan.png';
 
@@ -10,26 +8,26 @@ import Tab from "@mui/material/Tab"
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
+import SearchBar from "../../../../atoms/Inputs/CustomSearch";
 
 const list = [
     { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
-    { image: chan, name: "Chanmina" },
+    { image: "", name: "Justin Bieber" },
+    { image: "", name: "Awich" },
+    { image: "", name: "Red Velvet" },
+    { image: "", name: "Dreamcatcher" },
+    { image: "", name: "The Weeknd" },
+    { image: "", name: "Blackpink" },
+    { image: "", name: "Yeeun" },
+    { image: "", name: "Aespa" },
+    { image: "", name: "Purple Kiss" },
+    { image: "", name: "Yoasobi" },
+    { image: "", name: "Jiu" },
+    { image: "", name: "Yuu Shinoda" },
+    { image: "", name: "Joyner Lucas" },
+    { image: "", name: "Tim" },
+    { image: "", name: "Twice" },
+    { image: "", name: "BTS" },
 ]
 
 
@@ -75,13 +73,16 @@ class SearchOffCanvasEnd extends Component {
         artists: [],
         redirect: false,
         searchValue: "",
-        value: 0
+        value: 0,
+        keyword: "",
+        newList: list
     }
 
     constructor(props) {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.updateKeyword = this.updateKeyword.bind(this);
     }
 
     handleClose() {
@@ -111,15 +112,17 @@ class SearchOffCanvasEnd extends Component {
         this.setState({ value: newValue });
     }
 
+    updateKeyword(keyword) {
+        const filtered = list.filter(artist => {
+            return `${artist.name.toLowerCase()}`.includes(keyword.toLowerCase());
+        })
+        this.setState({ 
+            keyword: keyword,
+            newList: filtered
+        });
+    }
+
     render() {
-        let searchCondition;
-        if (this.state.value == 0)
-        {
-            searchCondition = <SuggestionSearchArtist list={list} search={this.handleSearch} />;
-        } else if (this.state.value === 1)
-        {
-            searchCondition = <SuggestionSearchSong list={this.state.songs} search={this.handleSearch} />;
-        }
         return <Offcanvas id="bg-color" {...this.props}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Search</Offcanvas.Title>
@@ -139,12 +142,10 @@ class SearchOffCanvasEnd extends Component {
                 </Tabs>
                 
                 <TabPanel value={this.state.value} index={0}>
-                    <Form className="canvas-end-searchbar">
-                        {searchCondition}
-                    </Form>
+                    <SearchBar keyword={this.state.keyword} onChange={this.updateKeyword} />
                     <div className="search-result-container">
                         <Table responsive hover>
-                            {list.map((item, index) => {
+                            {this.state.newList.map((item, index) => {
                                 return (
                                     <tbody style={{ border: 'none' }} id="box-shadow">
                                         <tr>
