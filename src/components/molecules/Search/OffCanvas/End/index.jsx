@@ -1,34 +1,13 @@
 import React, { Component } from "react";
-import { Offcanvas, Table } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import './index.css';
-import chan from '../../../../../images/chan.png';
-
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
-import SearchBar from "../../../../atoms/Inputs/CustomSearch";
-
-const list = [
-    { image: chan, name: "Chanmina" },
-    { image: "", name: "Justin Bieber" },
-    { image: "", name: "Awich" },
-    { image: "", name: "Red Velvet" },
-    { image: "", name: "Dreamcatcher" },
-    { image: "", name: "The Weeknd" },
-    { image: "", name: "Blackpink" },
-    { image: "", name: "Yeeun" },
-    { image: "", name: "Aespa" },
-    { image: "", name: "Purple Kiss" },
-    { image: "", name: "Yoasobi" },
-    { image: "", name: "Jiu" },
-    { image: "", name: "Yuu Shinoda" },
-    { image: "", name: "Joyner Lucas" },
-    { image: "", name: "Tim" },
-    { image: "", name: "Twice" },
-    { image: "", name: "BTS" },
-]
+import { SearchBar, ArtistSearchList, SongSearchList } from "../../../../atoms/Inputs/CustomSearch";
+import { artistList, songList } from "../../../../../utils/lists";
 
 
 function TabPanel(props) {
@@ -75,14 +54,16 @@ class SearchOffCanvasEnd extends Component {
         searchValue: "",
         value: 0,
         keyword: "",
-        newList: list
+        newListArtist: artistList,
+        newListSong: songList
     }
 
     constructor(props) {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.updateKeyword = this.updateKeyword.bind(this);
+        this.updateKeywordArtist = this.updateKeywordArtist.bind(this);
+        this.updateKeywordSong = this.updateKeywordSong.bind(this);
     }
 
     handleClose() {
@@ -99,11 +80,11 @@ class SearchOffCanvasEnd extends Component {
 
 
     handleSearch(e) {
-        if (e.target.innerText !== null && this.state.searchValue === "Artist") {
-            var artist = this.state.artists.find(art => art.name === e.target.innerText);
+        if (e.target.innerText !== null && this.state.value === 0) {
+            var artist = this.state.newListArtist.find(art => art.name === e.target.innerText);
             window.location.href = `/artist/id=${artist.id}`;
-        } else if (e.target.innerText !== null && this.state.searchValue === "Song") {
-            var song = this.state.songs.find(s => s.name === e.target.innerText);
+        } else if (e.target.innerText !== null && this.state.value === 1) {
+            var song = this.state.newListSong.find(s => s.name === e.target.innerText);
             window.location.href = `/song/id=${song.id}`;
         }
     };
@@ -112,13 +93,22 @@ class SearchOffCanvasEnd extends Component {
         this.setState({ value: newValue });
     }
 
-    updateKeyword(keyword) {
-        const filtered = list.filter(artist => {
+    updateKeywordArtist(keyword) {
+        const filtered = artistList.filter(artist => {
             return `${artist.name.toLowerCase()}`.includes(keyword.toLowerCase());
         })
         this.setState({ 
             keyword: keyword,
-            newList: filtered
+            newListArtist: filtered
+        });
+    }
+    updateKeywordSong(keyword) {
+        const filtered = songList.filter(artist => {
+            return `${artist.name.toLowerCase()}`.includes(keyword.toLowerCase());
+        })
+        this.setState({ 
+            keyword: keyword,
+            newListSong: filtered
         });
     }
 
@@ -142,24 +132,12 @@ class SearchOffCanvasEnd extends Component {
                 </Tabs>
                 
                 <TabPanel value={this.state.value} index={0}>
-                    <SearchBar keyword={this.state.keyword} onChange={this.updateKeyword} />
-                    <div className="search-result-container">
-                        <Table responsive hover>
-                            {this.state.newList.map((item, index) => {
-                                return (
-                                    <tbody style={{ border: 'none' }} id="box-shadow">
-                                        <tr>
-                                            <td style={{ border: 'none' }}><img src={item.image} loading="lazy" width="50" /></td>
-                                            <td style={{ border: 'none' }}>{item.name}</td>
-                                        </tr>
-                                    </tbody>
-                                )
-                            })}
-                        </Table>
-                    </div>
+                    <SearchBar keyword={this.state.keyword} onChange={this.updateKeywordArtist} />
+                    <ArtistSearchList artistList={this.state.newListArtist} onClick={this.handleSearch} />
                 </TabPanel>
                 <TabPanel value={this.state.value} index={1}>
-                    Item Two
+                    <SearchBar keyword={this.state.keyword} onChange={this.updateKeywordSong} />
+                    <SongSearchList songList={this.state.newListSong} onClick={this.handleSearch} />
                 </TabPanel>
 
             </Offcanvas.Body>
